@@ -22,62 +22,82 @@
     ></script>
     <script defer src="script.js"></script>
   </head>
-  <body>
-    <header class="p-3 text-bg-dark">
-      <div class="container-fluid">
-        <div
-          class="d-flex flex-wrap align-items-center justify-content-start justify-content-lg-start"
-        >
-          <a
-            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-          >
-            <h3>Seller Page</h3>
-          </a>
-        </div>
-      </div>
+  <body class="bg-info-subtle">
+    <header>
+      <nav
+        class="navbar navbar-dark bg-dark p-3 d-flex align-items-center justify-content-lg-start justify-content-center"
+        style="background-color: #e3f2fd"
+      >
+        <a class="navbar-brand" href="#">
+          <strong>Seller Page</strong>
+        </a>
+      </nav>
     </header>
     <main>
-      <div class="container mt-3">
-        <div
-          id="mainCard"
-          class="card my-2 border border-primary-subtle rounded"
-        >
+      <div class="container-fluid">
+        <div id="mainCard" class="card my-2 border-0 bg-info-subtle">
           <div class="card-body">
-            <h4 class="card-title text-center text-black-50 m-1">
-              Add Product
-            </h4>
+            <h4 class="card-title text-center text-black-50">Add Product</h4>
             <div
               id="displayAlert"
-              class="alert border-1 m-0 d-none"
+              class="alert border-1 mb-2 d-none"
               role="alert"
             ></div>
-            <form id="addForm" class="row">
-              <div class="col-md-12">
-                <label for="prodamt" class="form-label">Product Amount :</label>
+            <form id="addForm">
+              <div class="form-floating mb-2">
                 <input
                   type="number"
                   class="form-control border-1 border-dark-subtle rounded"
                   id="prodamt"
                   value=""
-                  placeholder="Enter money"
+                  placeholder="money..."
                 />
+                <label for="prodamt"> Enter Product Amount </label>
               </div>
-              <div class="col-md-12">
-                <label for="prodName" class="form-label mt-2"
-                  >Product Name :</label
-                >
+              <div class="form-floating mb-2">
                 <input
                   type="text"
                   class="form-control border-1 border-dark-subtle rounded"
                   id="prodName"
                   value=""
-                  placeholder="Expense Description"
+                  placeholder="Product name"
                 />
+                <label for="prodName">Enter Product Name </label>
               </div>
-
-              <div class="col-12">
+              <div class="row g-2">
+                <div class="col-md">
+                  <div class="form-floating">
+                    <select
+                      class="form-select border-1 border-dark-subtle rounded"
+                      id="productCategory"
+                    >
+                      <option selected value="Electronics">Electronics</option>
+                      <option value="Home & Kitchen">Home & Kitchen</option>
+                      <option value="Sports & outdoors">
+                        Sports & outdoors
+                      </option>
+                      <option value="Beauty & Personal Care">
+                        Beauty & Personal Care
+                      </option>
+                      <option value="Office Supplies">Office Supplies</option>
+                    </select>
+                    <label for="productCategory">Product Category</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-floating mt-2">
+                <input
+                  type="date"
+                  class="form-control border-1 border-dark-subtle rounded"
+                  id="productdate"
+                  value=""
+                  placeholder="Product listing data"
+                />
+                <label for="productdate">Product Listing Date </label>
+              </div>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                 <button
-                  id="expenseButton"
+                  id="btn-product"
                   class="btn btn-outline-success mt-4 border-1"
                   type="submit"
                 >
@@ -89,19 +109,67 @@
         </div>
       </div>
 
-      <div id="prodCard" class="container mt-3 d-none">
-        <div class="card mt-2 border border-primary-subtle rounded">
+      <div id="prodCard" class="container-fluid mt-3 d-none">
+        <div class="card mt-2 border-0 bg-info-subtle">
           <div class="card-body">
-            <h4 class="card-title text-black text-center m-1">
-              Added Products
+            <h4 class="card-title text-black text-center m-2">
+              Added Products List
             </h4>
+            <div class="row g-2">
+              <div class="col-md">
+                <form class="form" id="filprice">
+                  <label for="filterprice" class="px-1 mb-1"
+                    ><strong>Filter by Price :</strong></label
+                  >
+                  <select
+                    class="form-select border-1 border-dark-subtle rounded"
+                    id="filterprice"
+                  >
+                    <option selected value="All">All</option>
+                    <option value="1-5000">Between Rs.1.00 - Rs.5000</option>
+                    <option value="5001-15000">
+                      Between Rs.5001 - Rs.15000
+                    </option>
+                    <option value="15001-25000">
+                      Between Rs.15001 - Rs.25000
+                    </option>
+                    <option value="25000-1000000">greater than Rs.25000</option>
+                  </select>
+                </form>
+              </div>
+              <div class="col-md">
+                <form class="form" id="filCategory">
+                  <label for="filterCategory" class="px-1 mb-1"
+                    ><strong>Filter by Product Category :</strong></label
+                  >
+                  <select
+                    class="form-select border-1 border-dark-subtle rounded"
+                    id="filterCategory"
+                  >
+                    <option selected value="NoChoice">No Choice</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Home & Kitchen">Home & Kitchen</option>
+                    <option value="Sports & outdoors">Sports & outdoors</option>
+                    <option value="Beauty & Personal Care">
+                      Beauty & Personal Care
+                    </option>
+                    <option value="Office Supplies">Office Supplies</option>
+                  </select>
+                </form>
+              </div>
+            </div>
+            <div
+              id="containerAlert"
+              class="alert border-1 mt-2 d-none"
+              role="alert"
+            ></div>
             <ul id="prodL" class="list-group mt-3 border-1"></ul>
-          </div>
-          <hr />
-          <div class="card-body">
-            <h4 class="card-title text-black-25 m-1">
-              Total worth of products = <span id="totalP">0</span>
-            </h4>
+            <div id="totalValue">
+              <hr />
+              <h4 class="card-title text-black-25 m-1">
+                Total worth of products = <span id="totalP">0</span>
+              </h4>
+            </div>
           </div>
         </div>
       </div>
