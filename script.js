@@ -127,6 +127,7 @@ const totalPrice = function (data, task = "get") {
   return new Promise((resolve) => {
     let totalValue = 0;
     let localStore = localStorage.getItem(key);
+
     if (localStore) {
       const local = JSON.parse(localStore);
       if (task == "get") totalValue = local;
